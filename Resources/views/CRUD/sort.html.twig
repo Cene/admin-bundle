@@ -1,0 +1,44 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">Order Items</h4>
+</div>
+<div class="modal-body">
+    <ol id="sort-items-list" class="list-group">
+		{% block sortList %}
+			{% for item in items %}
+				<li class="list-group-item" data-id="data_{{ item.id }}">
+					<span class="badge">{{ item.position }}</span>
+				</li>
+			{% endfor %}
+		{% endblock sortList %}
+    </ol>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-primary" id="save-sort-items-list">Save changes</button>
+</div>
+
+<script>
+	$(function(){
+		var sortList = $('#sort-items-list').sortable();
+		$('#save-sort-items-list').click(function(){
+			var sortListSerialized = sortList.sortable("serialize", { attribute: "data-id", key: "list[]" });
+
+            $.ajax({
+                url: Routing.generate('{{ bundleParams.routingPrefix }}_sort_ajax'),
+                type: "POST",
+                data: sortListSerialized,
+                cache: false,
+                success: function (data) {
+                    if(data.success==1){
+                        location.href = Routing.generate('{{ bundleParams.routingPrefix }}');
+                    }
+                    else{
+                        alert('error');
+                    }
+                }
+            });
+
+		});
+	});
+</script>

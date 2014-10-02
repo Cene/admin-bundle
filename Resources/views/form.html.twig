@@ -1,0 +1,32 @@
+{% block form_row %}
+	{% spaceless %}
+		<div class="form-group {% if errors|length > 0 %}has-error{% endif %}">
+			{{ form_label(form) }}
+			{{ form_widget(form, { 'attr': {'class': 'form-control'} }) }}
+			<span class="help-block">
+				{{ form_errors(form, { 'attr': {'class': 'form-control'} }) }}
+			</span>
+		</div>
+	{% endspaceless %}
+{% endblock form_row %}
+
+
+{% block form_label -%}
+	{% if label is not sameas(false) -%}
+		{% set label_attr = label_attr|merge({'class': 'control-label'}) %}
+		{% if not compound -%}
+			{% set label_attr = label_attr|merge({'for': id}) %}
+		{%- endif %}
+		{% if required -%}
+			{% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+		{%- endif %}
+		{% if label is empty -%}
+			{% set label = name|humanize %}
+		{%- endif -%}
+		<label {% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}
+			{% if required %}
+				<span class="required" title="This field is required">*</span>
+			{% endif %}
+		</label>
+	{%- endif %}
+{%- endblock form_label %}

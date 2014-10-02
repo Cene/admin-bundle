@@ -1,0 +1,38 @@
+{
+    "name" : "mesalab/admin-bundle",
+    "description" : "Mesa-Lab Admin bundle",
+    "type" : "symfony-bundle",
+	"version": "0.0.1",
+	"homepage": "http://jolicode.com",
+	"time": "2014-10-05",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Manuel Cenedese",
+			"email": "manuel@mesa-lab.it",
+			"role": "Developer"
+		}
+	],
+    "keywords" : [
+        "mesa-lab admin bundle"
+    ],
+    "require" : {
+		"php": ">=5.3.3",
+		"symfony/symfony": ">=2.3.0",
+		"doctrine/orm": ">=2.2.3",
+		"doctrine/doctrine-bundle": ">=1.2.0",
+		"twig/extensions": ">=1.0.0",
+		"symfony/assetic-bundle": ">=2.3.0",
+		"sensio/generator-bundle": ">=2.3.0",
+		"friendsofsymfony/jsrouting-bundle": ">=1.5.3",
+		"doctrine/doctrine-fixtures-bundle": ">=2.2.*"
+    },
+    "autoload" : {
+        "psr-0" : {
+            "Mesalab\\AdminBundle" : ""
+        }
+    },
+    "target-dir" : "Mesalab/AdminBundle",
+    "repositories" : [{
+	}]
+}

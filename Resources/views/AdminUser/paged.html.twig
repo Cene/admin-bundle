@@ -1,0 +1,51 @@
+{% extends 'MesalabAdminBundle:CRUD:paged.html.twig' %}
+
+{% block innerTable %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    <a href="#" class="tableOrder">
+                        <span data-field="id"
+                        {% if sort.field == 'id' and sort.order == 'ASC' %} data-order="ASC" class="glyphicon glyphicon-arrow-down"
+                        {% elseif sort.field == 'id' %} data-order="DESC" class="glyphicon glyphicon-arrow-up"
+                        {% endif %}>
+                        </span> #
+                    </a>
+                </th>
+                <th>
+                    <a href="#" class="tableOrder">
+                        <span data-field="username"
+                                {% if sort.field == 'username' and sort.order == 'ASC' %} data-order="ASC" class="glyphicon glyphicon-arrow-down"
+                        {% elseif sort.field == 'username' %} data-order="DESC" class="glyphicon glyphicon-arrow-up"
+                                {% endif %}>
+                        </span> Username
+                    </a>
+                </th>
+                <th>
+                    <a href="#" class="tableOrder">
+                        <span data-field="position"
+                                {% if sort.field == 'position' and sort.order == 'ASC' %} data-order="ASC" class="glyphicon glyphicon-arrow-down"
+                        {% elseif sort.field == 'position' %} data-order="DESC" class="glyphicon glyphicon-arrow-up"
+                                {% endif %}>
+                        </span> Position
+                    </a>
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.position}}</td>
+                    <td>
+                        <a href="{{ path('admin_adminuser_edit',{'id':item.id}) }}?{{ queryString }}" class="btn btn-default editButton">Edit</a>
+                        <a href="#" class="btn btn-default">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock innerTable %}

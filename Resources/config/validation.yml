@@ -1,0 +1,10 @@
+Mesalab\Bundle\AdminBundle\Entity\:
+    properties:
+        username:
+            - NotBlank: ~
+        email:
+            - Email:
+                message: The email "{{ value }}" is not a valid email.
+                checkMX: true
+        password:
+            - NotBlank: ~

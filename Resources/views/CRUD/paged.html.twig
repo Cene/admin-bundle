@@ -1,0 +1,59 @@
+<div class="table-responsive">
+	{% block innerTable %}
+		<table class="table table-striped">
+			<thead>
+			<tr>
+				<th>
+					<a href="#" class="tableOrder">
+                        <span data-field="id"
+								{% if sort.field == 'id' and sort.order == 'ASC' %} data-order="ASC" class="glyphicon glyphicon-arrow-down"
+						{% elseif sort.field == 'id' %} data-order="DESC" class="glyphicon glyphicon-arrow-up"
+								{% endif %}>
+                        </span> #
+					</a>
+				</th>
+				<th>
+					<a href="#" class="tableOrder">
+                        <span data-field="position"
+								{% if sort.field == 'position' and sort.order == 'ASC' %} data-order="ASC" class="glyphicon glyphicon-arrow-down"
+						{% elseif sort.field == 'position' %} data-order="DESC" class="glyphicon glyphicon-arrow-up"
+								{% endif %}>
+                        </span> Position
+					</a>
+				</th>
+				<th>Actions</th>
+			</tr>
+			</thead>
+			<tbody>
+			{% for item in items %}
+				<tr>
+					<td>{{item.id}}</td>
+					<td>{{item.position}}</td>
+					<td>
+						<a href="{{ path(bundleParams.routingPrefix ~ '_edit',{'id':item.id}) }}?{{ queryString }}" class="btn btn-default editButton">Edit</a>
+						<a href="#" class="btn btn-default">Delete</a>
+					</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	{% endblock innerTable %}
+</div>
+<div id="tablePager">
+    <ul class="pagination">
+        <li><a href="#">&laquo;</a></li>
+        {% for i in 1..pages %}
+            <li {% if page==i %}class="active"{% endif %}><a href="#" data-page="{{i}}">{{i}}</a></li>
+        {% endfor %}
+        <li><a href="#">&raquo;</a></li>
+    </ul>
+</div>
+
+
+<!-- Modal -->
+<div id="adminModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content"></div>
+    </div>
+</div>
+<!-- end Modal -->

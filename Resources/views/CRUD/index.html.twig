@@ -1,0 +1,105 @@
+{% extends 'SiteAdminBundle::layout.html.twig' %}
+
+{% block side %}
+
+    <div class="row">
+        <div class="col-md-12">
+	        <a class="btn btn-primary btn-lg btn-block" href="{{ path(bundleParams.routingPrefix ~ '_new') }}">Create New</a>
+            <a data-toggle="modal" data-target="#adminModal" class="btn btn-default btn-lg btn-block" href="{{ path(bundleParams.routingPrefix ~ '_sort_ajax') }}">Sort Items</a>
+        </div>
+    </div>
+    <br>
+    <form id="tableFilter" class="form-horizontal" role="form">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Filter</h3>
+            </div>
+
+			<div class="panel-body">
+			{% block filter %}
+				<div class="form-group">
+					<label for="inputId" class="col-sm-3 control-label">Id</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control tableFilter" data-field="id" id="inputId" value="{{ options.id|default('') }}">
+					</div>
+				</div>
+			{% endblock filter %}
+			</div>
+
+        </div>
+
+        <!-- required input -->
+        <input type="hidden" class="form-control tablePage" id="inputPage" value="{{ pager.page }}">
+        <input type="hidden" class="form-control tablePerpage" id="inputPerpage" value="{{ pager.perpage }}">
+        <input type="hidden" class="form-control tableSort" id="inputField" value="{{ sort.field }}">
+        <input type="hidden" class="form-control tableSort" id="inputOrder" value="{{ sort.order }}">
+        <!-- end required input -->
+        <button type="submit" class="btn btn-lg btn-default btn-block">Search</button>
+    </form>
+
+{% endblock %}
+
+{% block table %}
+    <div id="tableContent"></div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function(){
+
+            var getPager = function(){
+                return {page:$('.tablePage').val(), perpage:$('.tablePerpage').val()};
+            };
+
+			var getSort = function(){
+                return {field:$('.tableSort#inputField').val(), order:$('.tableSort#inputOrder').val()};
+			};
+
+            var getQuery = function(){
+                var query = {};
+                $( ".tableFilter" ).each(function( index ) {
+                    if($(this).val()!=''){
+                        query[$(this).data('field')] = $(this).val();
+                    }
+                });
+                return query;
+            };
+
+            var getPaged = function(){
+                var jsonData = {pager:getPager(), sort:getSort(), options:getQuery()};
+                $('#tableContent').html('');
+                $.ajax({
+                    type: 'GET',
+                    url: Routing.generate('{{ bundleParams.routingPrefix }}_paged_ajax'),
+                    contentType:"application/json; charset=utf-8",
+                    data: jsonData,
+                    success: function(data){
+                        $('#tableContent').html(data);
+                    }
+                });
+            };
+
+            getPaged();
+
+            $('#tableFilter').on('submit', function(e){
+                e.preventDefault();
+                getPaged();
+            });
+
+			$('#tableContent').on('click', '.tableOrder', function(e){
+				e.preventDefault();
+				var order = $(this).find('span').data('order') == 'ASC' ? 'DESC' : 'ASC';
+				$('.tableSort#inputField').val($(this).find('span').data('field'));
+				$('.tableSort#inputOrder').val(order);
+				getPaged();
+			}).on('click', '.pagination>li>a', function(e){
+                e.preventDefault();
+                $('.tablePage').val($(this).data('page'));
+                getPaged();
+            });
+
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,11 @@
+parameters:
+    MesalabAdminbundle:
+        AdminUser:
+            namespace: MesalabAdminbundle
+            class_name: AdminUser
+            routing_prefix: admin_adminuser
+            pager:
+                perpage: 10
+            sort:
+                field: position
+                order: ASC

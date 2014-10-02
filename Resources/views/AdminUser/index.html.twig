@@ -1,0 +1,14 @@
+{% extends 'MesalabAdminBundle:CRUD:index.html.twig' %}
+
+{% block filter %}
+
+	{{ parent() }}
+
+    <div class="form-group">
+        <label for="inputName" class="col-sm-3 control-label">Username</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control tableFilter" data-field="username" id="inputName" value="{{ options.username|default('') }}">
+        </div>
+    </div>
+
+{% endblock filter %}

@@ -1,0 +1,7 @@
+parameters:
+    site_admin.controller.crud.class: Mesalab\Bundle\AdminBundle\Controller\CRUD
+
+services:
+    site_admin.crud.controller:
+        class: %site_admin.conUserRepository.phptroller.crud.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

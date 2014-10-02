@@ -1,0 +1,46 @@
+admin_homepage:
+    path:     /admin
+    defaults:
+      _controller: FrameworkBundle:Redirect:urlRedirect
+      path: /admin/store/category
+      permanent: true
+
+admin_secured_login:
+    path:     /login
+    defaults: { _controller: MesalabAdminBundle:Secured:login }
+
+admin_secured_security_check:
+    path:     /login_check
+    #defaults: { _controller: MesalabAdminBundle:Secured:securityCheck }
+
+admin_secured_logout:
+    path:     /logout
+    defaults: { _controller: MesalabAdminBundle:Secured:logout }
+
+
+
+admin_adminuser:
+    path:     /admin/admin-user
+    defaults: { _controller: MesalabAdminbundle:AdminUser:index }
+    options:
+        expose: true
+
+admin_adminuser_new:
+    path:     /admin/admin-user/new
+    defaults: { _controller: MesalabAdminbundle:AdminUser:new }
+
+admin_adminuser_edit:
+    path:     /admin/admin-user/edit/{id}
+    defaults: { _controller: MesalabAdminbundle:AdminUser:edit }
+
+admin_adminuser_paged_ajax:
+    path:     /admin/admin-user/paged
+    defaults: { _controller: MesalabAdminbundle:AdminUser:paged }
+    options:
+        expose: true
+
+admin_adminuser_sort_ajax:
+    path:     /admin/admin-user/sort
+    defaults: { _controller: MesalabAdminbundle:AdminUser:sort }
+    options:
+        expose: true
