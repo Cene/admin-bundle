@@ -12,7 +12,7 @@
 
     {% block stylesheets %}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link href="{{ asset('bundles/siteadmin/css/main.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('bundles/mesalabadmin/css/main.css') }}" rel="stylesheet"/>
     {% endblock %}
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -34,12 +34,11 @@
                 <span class="icon-bar"></span>
             </button>
             <span class="navbar-brand" href="#">Project name</span>
-            <p class="navbar-text">Hi {{ app.user.username }}, <a href="{{ path('site_admin_secured_logout') }}">Logout</a></p>
+            <p class="navbar-text">Hi {{ app.user.username }}, <a href="{{ path('admin_secured_logout') }}">Logout</a></p>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ path('acme_store_category') }}">Categories</a></li>
-				<li><a href="{{ path('admin_user') }}">Users</a></li>
+				<li><a href="{{ path('admin_adminuser') }}">Users</a></li>
             </ul>
         </div>
     </div>

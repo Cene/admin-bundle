@@ -2,6 +2,7 @@
 
 namespace Mesalab\Bundle\AdminBundle\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Mesalab\Bundle\AdminBundle\Entity\CRUD;
@@ -10,7 +11,7 @@ use Mesalab\Bundle\AdminBundle\Entity\CRUD;
  * User
  *
  * @ORM\Table(name="admin_user")
- * @ORM\Entity(repositoryClass="Site\Bundle\UserBundle\Entity\UserRepository")
+ * @ORM\Entity(repositoryClass="Mesalab\Bundle\AdminBundle\Entity\AdminUserRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class AdminUser extends CRUD implements UserInterface, \Serializable
@@ -34,6 +35,8 @@ class AdminUser extends CRUD implements UserInterface, \Serializable
 	 * @ORM\Column(name="is_active", type="boolean")
 	 */
 	private $isActive;
+
+
 
 
 	/**
@@ -91,9 +94,12 @@ class AdminUser extends CRUD implements UserInterface, \Serializable
 	public function serialize()
 	{
 		return serialize(array(
-			$this->getId(),
+			/*$this->getId(),
 			$this->getUsername(),
-			$this->getPassword(),
+			$this->getPassword(),*/
+			$this->id,
+			$this->username,
+			$this->password,
 		));
 	}
 

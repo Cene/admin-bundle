@@ -18,7 +18,7 @@ class SecuredController extends Controller
             $error = $request->getSession()->get(SecurityContext::AUTHENTICATION_ERROR);
         }
 
-		return $this->render('SiteAdminBundle:Secured:login.html.twig', array(
+		return $this->render('MesalabAdminBundle:Secured:login.html.twig', array(
             'last_username' => $request->getSession()->get(SecurityContext::LAST_USERNAME),
             'error'         => $error,
         ));
@@ -58,7 +58,7 @@ class SecuredController extends Controller
 		}
 
 		return $this->render(
-			'SiteAdminBundle:Secured:login.html.twig',
+			'MesalabAdminBundle:Secured:login.html.twig',
 			array(
 				// last username entered by the user
 				'last_username' => $session->get(SecurityContext::LAST_USERNAME),
@@ -69,7 +69,7 @@ class SecuredController extends Controller
 
 	public function dumpStringAction()
 	{
-		return $this->render('SiteAdminBundle:Secured:dumpString.html.twig', array());
+		return $this->render('MesalabAdminBundle:Secured:dumpString.html.twig', array());
 	}
 
 }
