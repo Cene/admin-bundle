@@ -1,6 +1,6 @@
 <?php
 
-namespace Mesalab\AdminBundle\Command;
+namespace Mesalab\Bundle\AdminBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
