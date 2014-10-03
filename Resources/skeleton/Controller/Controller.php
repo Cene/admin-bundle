@@ -8,7 +8,7 @@ use |namespace|\Form\Type\|entity|Type;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Mesalab\AdminBundle\Controller\CRUDController;
+use Mesalab\Bundle\AdminBundle\Controller\CRUDController;
 
 class |entity|Controller extends CRUDController
 {

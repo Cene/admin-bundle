@@ -4,7 +4,7 @@ namespace |namespace|\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Mesalab\AdminBundle\Entity\CRUD;
+use Mesalab\Bundle\AdminBundle\Entity\CRUD;
 
 /**
  * |entity|
