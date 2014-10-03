@@ -14,8 +14,24 @@ use Mesalab\Bundle\AdminBundle\Entity\CRUD;
  * @ORM\Entity(repositoryClass="Mesalab\Bundle\AdminBundle\Entity\AdminUserRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class AdminUser extends CRUD implements UserInterface, \Serializable
+class AdminUser implements UserInterface, \Serializable
 {
+	/**
+	 * @var integer
+	 *
+	 * @ORM\Column(name="id", type="integer")
+	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="AUTO")
+	 */
+	public $id;
+
+	/**
+	 * @var integer
+	 *
+	 * @ORM\Column(name="position", type="integer", nullable=true)
+	 */
+	private $position;
+
 	/**
 	 * @ORM\Column(type="string", length=25, unique=true)
 	 */
@@ -36,6 +52,24 @@ class AdminUser extends CRUD implements UserInterface, \Serializable
 	 */
 	private $isActive;
 
+	/**
+	 * @var datetime
+	 *
+	 * @ORM\Column(name="created", type="datetime", nullable=true)
+	 */
+	private $created;
+
+	/**
+	 * @var datetime
+	 *
+	 * @ORM\Column(name="updated", type="datetime", nullable=true)
+	 */
+	private $updated;
+
+
+
+
+
 
 
 
@@ -44,10 +78,100 @@ class AdminUser extends CRUD implements UserInterface, \Serializable
 	 */
 	public function setCreatedValue()
 	{
-		parent::setCreatedValue();
+	    $this->setCreated(new \DateTime());
+		$this->setPosition(0);
 		$this->setIsActive(true);
 	}
 
+	/**
+	 * @ORM\PreUpdate
+	 */
+	public function setUpdatedValue()
+	{
+	    $this->setUpdated(new \DateTime());
+	}
+
+
+
+
+	/**
+	 * Get id
+	 *
+	 * @return integer
+	 */
+	 public function getId()
+	 {
+		 return $this->id;
+	 }
+
+	/**
+	 * Set position
+	 *
+	 * @param integer $position
+	 * @return AdminUser
+	 */
+	public function setPosition($position)
+	{
+		$this->position = $position;
+
+		return $this;
+	}
+
+	/**
+	 * Get position
+	 *
+	 * @return integer
+	 */
+	public function getPosition()
+	{
+		return $this->position;
+	}
+
+	/**
+	 * Set created
+	 *
+	 * @param \DateTime $created
+	 * @return AdminUser
+	 */
+	public function setCreated($created)
+	{
+		$this->created = $created;
+
+		return $this;
+	}
+
+	/**
+	 * Get created
+	 *
+	 * @return \DateTime
+	 */
+	public function getCreated()
+	{
+		return $this->created;
+	}
+
+	/**
+	 * Set updated
+	 *
+	 * @param \DateTime $updated
+	 * @return AdminUser
+	 */
+	public function setUpdated($updated)
+	{
+		$this->updated = $updated;
+
+		return $this;
+	}
+
+	/**
+	 * Get updated
+	 *
+	 * @return \DateTime
+	 */
+	public function getUpdated()
+	{
+		return $this->updated;
+	}
 
 	/**
 	 * @inheritDoc
@@ -94,9 +218,6 @@ class AdminUser extends CRUD implements UserInterface, \Serializable
 	public function serialize()
 	{
 		return serialize(array(
-			/*$this->getId(),
-			$this->getUsername(),
-			$this->getPassword(),*/
 			$this->id,
 			$this->username,
 			$this->password,
@@ -119,7 +240,7 @@ class AdminUser extends CRUD implements UserInterface, \Serializable
 	 * Set username
 	 *
 	 * @param string $username
-	 * @return User
+	 * @return AdminUser
 	 */
 	public function setUsername($username)
 	{
@@ -132,7 +253,7 @@ class AdminUser extends CRUD implements UserInterface, \Serializable
 	 * Set password
 	 *
 	 * @param string $password
-	 * @return User
+	 * @return AdminUser
 	 */
 	public function setPassword($password)
 	{
@@ -147,7 +268,7 @@ class AdminUser extends CRUD implements UserInterface, \Serializable
 	 * Set email
 	 *
 	 * @param string $email
-	 * @return User
+	 * @return AdminUser
 	 */
 	public function setEmail($email)
 	{
@@ -170,7 +291,7 @@ class AdminUser extends CRUD implements UserInterface, \Serializable
 	 * Set salt
 	 *
 	 * @param string $salt
-	 * @return User
+	 * @return AdminUser
 	 */
 	public function setSalt($salt)
 	{
@@ -183,7 +304,7 @@ class AdminUser extends CRUD implements UserInterface, \Serializable
 	 * Set isActive
 	 *
 	 * @param boolean $isActive
-	 * @return User
+	 * @return AdminUser
 	 */
 	public function setIsActive($isActive)
 	{

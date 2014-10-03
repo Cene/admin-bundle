@@ -9,21 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class SecuredController extends Controller
 {
-
-    public function loginOldAction(Request $request)
-    {
-        if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
-            $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
-        } else {
-            $error = $request->getSession()->get(SecurityContext::AUTHENTICATION_ERROR);
-        }
-
-		return $this->render('MesalabAdminBundle:Secured:login.html.twig', array(
-            'last_username' => $request->getSession()->get(SecurityContext::LAST_USERNAME),
-            'error'         => $error,
-        ));
-    }
-
     public function securityCheckAction()
     {
         // The security layer will intercept this request
@@ -36,17 +21,7 @@ class SecuredController extends Controller
 
 	public function loginAction(Request $request)
 	{
-		/*
-		$user = new User();
-		$user->setUsername('aa');
-		$user->setPassword('aa');
-		$em = $this->getDoctrine()->getManager();
-		$em->persist($user);
-		$em->flush();
-		*/
-
 		$session = $request->getSession();
-//echo '<pre>'; print_r($request); echo'</pre>'; exit;
 		// get the login error if there is one
 		if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
 			$error = $request->attributes->get(
@@ -65,11 +40,6 @@ class SecuredController extends Controller
 				'error'         => $error,
 			)
 		);
-	}
-
-	public function dumpStringAction()
-	{
-		return $this->render('MesalabAdminBundle:Secured:dumpString.html.twig', array());
 	}
 
 }

@@ -2,7 +2,7 @@ admin_homepage:
     path:     /admin
     defaults:
       _controller: FrameworkBundle:Redirect:urlRedirect
-      path: /admin/user
+      path: /admin/admin-user
       permanent: true
 
 admin_secured_login:

@@ -79,7 +79,7 @@ class CRUD
      * Set position
      *
      * @param integer $position
-     * @return Category
+     * @return CRUD
      */
     public function setPosition($position)
     {
@@ -102,7 +102,7 @@ class CRUD
      * Set created
      *
      * @param \DateTime $created
-     * @return Category
+     * @return CRUD
      */
     public function setCreated($created)
     {
@@ -125,7 +125,7 @@ class CRUD
      * Set updated
      *
      * @param \DateTime $updated
-     * @return Category
+     * @return CRUD
      */
     public function setUpdated($updated)
     {
