@@ -1,0 +1,10 @@
+{% extends 'MesalabAdminBundle:CRUD:sort.html.twig' %}
+
+{% block sortList %}
+	{% for item in items %}
+		<li class="list-group-item" data-id="data_{{ item.id }}">
+			<span>{{ item.name }}</span>
+			<span class="badge">{{ item.position }}</span>
+		</li>
+	{% endfor %}
+{% endblock sortList %}

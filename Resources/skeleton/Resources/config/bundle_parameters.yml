@@ -1,0 +1,13 @@
+
+
+parameters:
+    |bundle|:
+        |entity|:
+            namespace: |bundle|
+            class_name: |entity|
+            routing_prefix: |route_name|
+            pager:
+                perpage: 10
+            sort:
+                field: position
+                order: ASC

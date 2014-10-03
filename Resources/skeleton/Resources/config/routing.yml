@@ -1,0 +1,27 @@
+
+
+|route_name|:
+    path:     |route_path|
+    defaults: { _controller: |bundle|:|entity|:index }
+    options:
+        expose: true
+
+|route_name|_new:
+    path:     |route_path|/new
+    defaults: { _controller: |bundle|:|entity|:new }
+
+|route_name|_edit:
+    path:     |route_path|/edit/{id}
+    defaults: { _controller: |bundle|:|entity|:edit }
+
+|route_name|_paged_ajax:
+    path:     |route_path|/paged
+    defaults: { _controller: |bundle|:|entity|:paged }
+    options:
+        expose: true
+
+|route_name|_sort_ajax:
+    path:     |route_path|/sort
+    defaults: { _controller: |bundle|:|entity|:sort }
+    options:
+        expose: true
