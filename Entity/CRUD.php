@@ -18,7 +18,7 @@ class CRUD
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    public $id;
+    private $id;
 
 	/**
 	 * @var integer
@@ -68,7 +68,7 @@ class CRUD
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
