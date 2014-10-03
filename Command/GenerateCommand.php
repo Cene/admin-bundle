@@ -62,6 +62,7 @@ class GenerateCommand extends ContainerAwareCommand
 
 		$output->writeln('Admin generation');
 		$srcDir = dirname($this->getContainer()->getParameter('kernel.root_dir')).'/src';
+		$vendorDir = dirname($this->getContainer()->getParameter('kernel.root_dir')).'/vendor';
 
 		$bundleDir = $input->getArgument('bundle_name'); // Acme/DemoBundle | Acme/Bundle/DemoBundle
 		$entity = $input->getArgument('entity'); // Product
@@ -83,7 +84,7 @@ class GenerateCommand extends ContainerAwareCommand
 		$this->setReplacement('|route_path|', strtolower('/admin/' . $entity)); // /admin/product
 
 		// source and destination target dirs
-		$source = $srcDir . '/Site/Bundle/AdminBundle/Resources/skeleton/';
+		$source = $vendorDir . '/mesalab/admin-bundle/Mesalab/Bundle/AdminBundle/Resources/skeleton/';
 		$target = $srcDir . '/' . $bundleDir . '/';
 
 		// check if needed files exist
